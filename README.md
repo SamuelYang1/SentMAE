@@ -7,4 +7,4 @@
 [SamuelYang/SentMAE_MSMARCO](https://huggingface.co/SamuelYang/SentMAE_MSMARCO): pre-trained on generic corpus(Wikipedia+BookCorpus), continuously pre-trained and fine-tuned on MS MARCO
 
 
-The code is coming soon.
+**The code is coming soon.**

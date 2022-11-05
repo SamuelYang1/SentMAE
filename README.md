@@ -43,7 +43,7 @@ For more details, please refer to [RetroMAE Pre-training](https://github.com/sta
 python -m torch.distributed.launch --nproc_per_node 8 \
 -m bi_encoder.run \
 --output_dir {path to save ckpt} \
---model_name_or_path Shitao/RetroMAE \
+--model_name_or_path SamuelYang/SentMAE \
 --do_train  \
 --corpus_file ./data/BertTokenizer_data/corpus \
 --train_query_file ./data/BertTokenizer_data/train_query \

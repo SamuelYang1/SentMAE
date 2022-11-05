@@ -19,7 +19,7 @@ pip install .
 
 ## Workflow
 
-### Qucick test:
+### Qucick test
 
 ```
 python beir_test.py --dataset nfcorpus --split test --batch_size 128 \

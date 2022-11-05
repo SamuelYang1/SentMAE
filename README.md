@@ -14,5 +14,7 @@
 ```
 pip install beir
 
-python beir_test.py --dataset nfcorpus --split test --batch_size 128 --model_name_or_path SamuelYang/SentMAE_BEIR --pooling_strategy cls --score_function dot
+python beir_test.py --dataset nfcorpus --split test --batch_size 128 \
+                    --model_name_or_path SamuelYang/SentMAE_BEIR \
+                    --pooling_strategy cls --score_function dot
 ```

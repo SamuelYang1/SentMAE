@@ -8,7 +8,6 @@
 
 ## Installation
 
-
 ```
 pip install beir
 
@@ -25,16 +24,32 @@ cd SimCSE
 pip install -e .
 ```
 
-## Workflow
+## RetroMAE pretraining
+### Prepare data
+```
+cd RetroMAE/examples/pretrain
+python preprocess.py --data bert_data --tokenizer_name bert-base-uncased --output_dir pretrain_data/bert_data
+```
 
 ### Pretrain
 ```
-python -m torch.distributed.launch --nproc_per_node 8 \
-  -m pretrain.run \
-  --output_dir {path to save ckpt} \
-  --data_dir {your data} \
+python -m torch.distributed.launch --nproc_per_node {number of gpus} \
+  -m  pretrain.run \
+  --output_dir {path to save model} \
+  --data_dir {preprocessed data, e.g., pretrain_data/bert_data} \
   --do_train True \
-  --model_name_or_path bert-base-uncased 
+  --save_steps 20000 \
+  --per_device_train_batch_size 32 \
+  --model_name_or_path bert-base-uncased \
+  --fp16 True \
+  --warmup_ratio 0.1 \
+  --learning_rate 1e-4 \
+  --num_train_epochs 8 \
+  --overwrite_output_dir True \
+  --dataloader_num_workers 6 \
+  --weight_decay 0.01 \
+  --encoder_mlm_probability 0.3 \
+  --decoder_mlm_probability 0.5 
 ```
 For more details, please refer to [RetroMAE Pre-training](https://github.com/staoxiao/RetroMAE/blob/master/examples/pretrain/README.md).
 
@@ -59,7 +74,6 @@ python -m tevatron.driver.train \
   --dataloader_num_workers 6
 ```
 For more details, please refer to [tevatron](https://github.com/texttron/tevatron/tree/main/examples/coCondenser-marco).
-
 
 ### Test on BEIR
 
